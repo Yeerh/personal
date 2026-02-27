@@ -35,7 +35,7 @@ const objectiveOptions = [
 ];
 
 const WHATSAPP_NUMBER = "558194077138"; // +55 81 9407-7138 (apenas números)
-const EMAIL = "diegogeniu@gmail.com";
+const EMAIL = "personalcleytonvieira@gmail.com";
 
 export default function FormSection() {
   const [step, setStep] = useState(1);

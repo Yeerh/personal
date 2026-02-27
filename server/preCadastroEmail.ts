@@ -11,7 +11,7 @@ export type PreCadastroPayload = {
   userAgent?: string;
 };
 
-const TO_EMAIL_DEFAULT = "diegogeniu@gmail.com";
+const TO_EMAIL_DEFAULT = "personalcleytonvieira@gmail.com";
 
 function requiredEnv(name: string) {
   const value = process.env[name];
@@ -56,4 +56,3 @@ export async function sendPreCadastroEmail(payload: PreCadastroPayload) {
     text,
   });
 }
-

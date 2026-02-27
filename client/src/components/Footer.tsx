@@ -81,11 +81,11 @@ export default function Footer() {
                 @cleytonvieira
               </a>
               <a
-                href="mailto:diegogeniu@gmail.com"
+                href="mailto:personalcleytonvieira@gmail.com"
                 className="flex items-center gap-3 text-white/50 hover:text-primary text-sm transition-colors duration-200"
               >
                 <Mail size={16} />
-                diegogeniu@gmail.com
+                personalcleytonvieira@gmail.com
               </a>
             </div>
           </div>
