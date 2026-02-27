@@ -40,7 +40,7 @@ export default function Navbar() {
         >
           <span
             className="font-['Barlow_Condensed'] font-black text-2xl md:text-3xl tracking-wide uppercase"
-            style={{ color: "#F59E0B" }}
+            style={{ color: "#60A5FA" }}
           >
             CLEYTON
           </span>
@@ -60,7 +60,7 @@ export default function Navbar() {
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
-              className="text-white/80 hover:text-[#F59E0B] font-medium text-sm tracking-wide transition-colors duration-200 uppercase font-['Inter']"
+              className="text-white/80 hover:text-[#60A5FA] font-medium text-sm tracking-wide transition-colors duration-200 uppercase font-['Inter']"
             >
               {item.label}
             </button>
@@ -95,7 +95,7 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className="text-white/80 hover:text-[#F59E0B] font-medium text-base tracking-wide transition-colors duration-200 uppercase text-left py-2 border-b border-white/5"
+                className="text-white/80 hover:text-[#60A5FA] font-medium text-base tracking-wide transition-colors duration-200 uppercase text-left py-2 border-b border-white/5"
               >
                 {item.label}
               </button>

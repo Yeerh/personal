@@ -93,9 +93,9 @@ export default function PlansSection() {
           <div
             className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-sm mb-4"
             style={{
-              background: "rgba(245,158,11,0.1)",
-              border: "1px solid rgba(245,158,11,0.3)",
-              color: "#F59E0B",
+              background: "rgba(96,165,250,0.1)",
+              border: "1px solid rgba(96,165,250,0.3)",
+              color: "#60A5FA",
             }}
           >
             Investimento
@@ -127,10 +127,10 @@ export default function PlansSection() {
                   ? "linear-gradient(160deg, #1a1f2e 0%, #111827 100%)"
                   : "rgba(17,24,39,0.8)",
                 border: plan.highlight
-                  ? "1.5px solid rgba(245,158,11,0.6)"
+                  ? "1.5px solid rgba(96,165,250,0.6)"
                   : "1px solid rgba(255,255,255,0.08)",
                 boxShadow: plan.highlight
-                  ? "0 20px 60px rgba(245,158,11,0.15), 0 0 0 1px rgba(245,158,11,0.2)"
+                  ? "0 20px 60px rgba(96,165,250,0.15), 0 0 0 1px rgba(96,165,250,0.2)"
                   : "0 10px 40px rgba(0,0,0,0.4)",
               }}
             >
@@ -139,7 +139,7 @@ export default function PlansSection() {
                 <div
                   className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wider pulse-gold"
                   style={{
-                    background: "linear-gradient(135deg, #F59E0B, #EA580C)",
+                    background: "linear-gradient(135deg, #60A5FA, #0EA5E9)",
                     color: "#0D1117",
                   }}
                 >
@@ -153,7 +153,7 @@ export default function PlansSection() {
                 <div
                   className="h-1 w-full"
                   style={{
-                    background: "linear-gradient(90deg, #F59E0B, #EA580C)",
+                    background: "linear-gradient(90deg, #60A5FA, #0EA5E9)",
                   }}
                 />
               )}
@@ -187,11 +187,11 @@ export default function PlansSection() {
                 <ul className="space-y-3 flex-1 mb-8">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
-                      <Check
-                        size={16}
-                        className="flex-shrink-0 mt-0.5"
-                        style={{ color: "#F59E0B" }}
-                      />
+                  <Check
+                    size={16}
+                    className="flex-shrink-0 mt-0.5"
+                    style={{ color: "#60A5FA" }}
+                  />
                       <span className="text-white/70 text-sm leading-snug">
                         {feature}
                       </span>
@@ -205,7 +205,7 @@ export default function PlansSection() {
                   className={`w-full py-3.5 rounded-sm font-['Barlow_Condensed'] font-800 uppercase tracking-wide text-base transition-all duration-300 ${
                     plan.highlight
                       ? "btn-gold"
-                      : "border border-white/20 text-white hover:border-[#F59E0B] hover:text-[#F59E0B]"
+                      : "border border-white/20 text-white hover:border-[#60A5FA] hover:text-[#60A5FA]"
                   }`}
                 >
                   {plan.cta}

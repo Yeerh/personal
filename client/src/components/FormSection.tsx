@@ -108,9 +108,9 @@ export default function FormSection() {
         <div className="container max-w-2xl mx-auto text-center">
           <div
             className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
-            style={{ background: "rgba(245,158,11,0.15)", border: "2px solid #F59E0B" }}
+            style={{ background: "rgba(96,165,250,0.15)", border: "2px solid #60A5FA" }}
           >
-            <CheckCircle size={40} style={{ color: "#F59E0B" }} />
+            <CheckCircle size={40} style={{ color: "#60A5FA" }} />
           </div>
           <h2
             className="font-['Barlow_Condensed'] font-black uppercase text-white mb-4"
@@ -125,11 +125,11 @@ export default function FormSection() {
           <div
             className="rounded-sm p-5 text-left mt-6"
             style={{
-              background: "rgba(245,158,11,0.08)",
-              border: "1px solid rgba(245,158,11,0.3)",
+              background: "rgba(96,165,250,0.08)",
+              border: "1px solid rgba(96,165,250,0.3)",
             }}
           >
-            <p className="text-[#F59E0B] font-semibold text-sm mb-2 uppercase tracking-wide">
+            <p className="text-[#60A5FA] font-semibold text-sm mb-2 uppercase tracking-wide">
               Lembre-se
             </p>
             <p className="text-white/70 text-sm leading-relaxed">
@@ -155,7 +155,7 @@ export default function FormSection() {
       {/* Decorative element */}
       <div
         className="absolute top-0 left-0 right-0 h-1"
-        style={{ background: "linear-gradient(90deg, #F59E0B, #EA580C, #F59E0B)" }}
+        style={{ background: "linear-gradient(90deg, #60A5FA, #0EA5E9, #60A5FA)" }}
       />
 
       <div className="container max-w-2xl mx-auto">
@@ -164,9 +164,9 @@ export default function FormSection() {
           <div
             className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-sm mb-4"
             style={{
-              background: "rgba(245,158,11,0.1)",
-              border: "1px solid rgba(245,158,11,0.3)",
-              color: "#F59E0B",
+              background: "rgba(96,165,250,0.1)",
+              border: "1px solid rgba(96,165,250,0.3)",
+              color: "#60A5FA",
             }}
           >
             Gratuito
@@ -194,7 +194,7 @@ export default function FormSection() {
                 style={{
                   background:
                     i + 1 <= step
-                      ? "linear-gradient(90deg, #F59E0B, #EA580C)"
+                      ? "linear-gradient(90deg, #60A5FA, #0EA5E9)"
                       : "rgba(255,255,255,0.1)",
                 }}
               />
@@ -223,7 +223,7 @@ export default function FormSection() {
 
               <div>
                 <label className="block text-white/60 text-sm mb-2 uppercase tracking-wide">
-                  Qual o seu nome? <span style={{ color: "#F59E0B" }}>*</span>
+                  Qual o seu nome? <span style={{ color: "#60A5FA" }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -236,7 +236,7 @@ export default function FormSection() {
 
               <div>
                 <label className="block text-white/60 text-sm mb-2 uppercase tracking-wide">
-                  Qual o seu WhatsApp? <span style={{ color: "#F59E0B" }}>*</span>
+                  Qual o seu WhatsApp? <span style={{ color: "#60A5FA" }}>*</span>
                 </label>
                 <input
                   type="tel"
@@ -274,7 +274,7 @@ export default function FormSection() {
               <div>
                 <label className="block text-white/60 text-sm mb-3 uppercase tracking-wide">
                   Você já está treinando ou pretende começar a treinar em 2025?{" "}
-                  <span style={{ color: "#F59E0B" }}>*</span>
+                  <span style={{ color: "#60A5FA" }}>*</span>
                 </label>
                 <div className="space-y-2.5">
                   {trainingOptions.map((opt) => (
@@ -284,11 +284,11 @@ export default function FormSection() {
                       style={{
                         background:
                           formData.trainingStatus === opt.value
-                            ? "rgba(245,158,11,0.12)"
+                            ? "rgba(96,165,250,0.12)"
                             : "rgba(255,255,255,0.03)",
                         border:
                           formData.trainingStatus === opt.value
-                            ? "1.5px solid rgba(245,158,11,0.5)"
+                            ? "1.5px solid rgba(96,165,250,0.5)"
                             : "1px solid rgba(255,255,255,0.07)",
                       }}
                     >
@@ -297,11 +297,11 @@ export default function FormSection() {
                         style={{
                           borderColor:
                             formData.trainingStatus === opt.value
-                              ? "#F59E0B"
+                              ? "#60A5FA"
                               : "rgba(255,255,255,0.3)",
                           background:
                             formData.trainingStatus === opt.value
-                              ? "#F59E0B"
+                              ? "#60A5FA"
                               : "transparent",
                         }}
                       >
@@ -326,7 +326,7 @@ export default function FormSection() {
               <div>
                 <label className="block text-white/60 text-sm mb-3 uppercase tracking-wide">
                   Qual o seu objetivo?{" "}
-                  <span style={{ color: "#F59E0B" }}>*</span>
+                  <span style={{ color: "#60A5FA" }}>*</span>
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {objectiveOptions.map((opt) => (
@@ -336,11 +336,11 @@ export default function FormSection() {
                       style={{
                         background:
                           formData.objective === opt.value
-                            ? "rgba(245,158,11,0.12)"
+                            ? "rgba(96,165,250,0.12)"
                             : "rgba(255,255,255,0.03)",
                         border:
                           formData.objective === opt.value
-                            ? "1.5px solid rgba(245,158,11,0.5)"
+                            ? "1.5px solid rgba(96,165,250,0.5)"
                             : "1px solid rgba(255,255,255,0.07)",
                       }}
                     >
@@ -349,11 +349,11 @@ export default function FormSection() {
                         style={{
                           borderColor:
                             formData.objective === opt.value
-                              ? "#F59E0B"
+                              ? "#60A5FA"
                               : "rgba(255,255,255,0.3)",
                           background:
                             formData.objective === opt.value
-                              ? "#F59E0B"
+                              ? "#60A5FA"
                               : "transparent",
                         }}
                       >
@@ -412,12 +412,12 @@ export default function FormSection() {
               <div
                 className="rounded-sm p-5"
                 style={{
-                  background: "rgba(245,158,11,0.06)",
-                  border: "1px solid rgba(245,158,11,0.25)",
+                  background: "rgba(96,165,250,0.06)",
+                  border: "1px solid rgba(96,165,250,0.25)",
                 }}
               >
                 <p className="text-white/70 text-sm leading-relaxed mb-3">
-                  <span style={{ color: "#F59E0B" }} className="font-semibold">
+                  <span style={{ color: "#60A5FA" }} className="font-semibold">
                     Importante:
                   </span>{" "}
                   Nenhuma das respostas acima influencia no valor da consultoria.
@@ -478,11 +478,11 @@ export default function FormSection() {
                 className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-sm font-['Barlow_Condensed'] font-black uppercase tracking-wide text-base transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{
                   background: canProceed()
-                    ? "linear-gradient(135deg, #F59E0B, #EA580C)"
-                    : "rgba(245,158,11,0.3)",
+                    ? "linear-gradient(135deg, #60A5FA, #0EA5E9)"
+                    : "rgba(96,165,250,0.3)",
                   color: "#0D1117",
                   boxShadow: canProceed()
-                    ? "0 4px 20px rgba(245,158,11,0.3)"
+                    ? "0 4px 20px rgba(96,165,250,0.3)"
                     : "none",
                 }}
               >
@@ -494,9 +494,9 @@ export default function FormSection() {
                 onClick={handleSubmit}
                 className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-sm font-['Barlow_Condensed'] font-black uppercase tracking-wide text-base transition-all duration-300"
                 style={{
-                  background: "linear-gradient(135deg, #F59E0B, #EA580C)",
+                  background: "linear-gradient(135deg, #60A5FA, #0EA5E9)",
                   color: "#0D1117",
-                  boxShadow: "0 4px 20px rgba(245,158,11,0.4)",
+                  boxShadow: "0 4px 20px rgba(96,165,250,0.4)",
                 }}
               >
                 <Send size={16} />

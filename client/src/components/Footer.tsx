@@ -23,7 +23,7 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-4">
               <span
                 className="font-['Barlow_Condensed'] font-black text-2xl tracking-wide uppercase"
-                style={{ color: "#F59E0B" }}
+                style={{ color: "#60A5FA" }}
               >
                 CLEYTON
               </span>
@@ -52,7 +52,7 @@ export default function Footer() {
                 <li key={item.id}>
                   <button
                     onClick={() => scrollTo(item.id)}
-                    className="text-white/50 hover:text-[#F59E0B] text-sm transition-colors duration-200 uppercase tracking-wide"
+                    className="text-white/50 hover:text-[#60A5FA] text-sm transition-colors duration-200 uppercase tracking-wide"
                   >
                     {item.label}
                   </button>
@@ -71,7 +71,7 @@ export default function Footer() {
                 href="https://wa.me/5500000000000"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-white/50 hover:text-[#F59E0B] text-sm transition-colors duration-200"
+                className="flex items-center gap-3 text-white/50 hover:text-[#60A5FA] text-sm transition-colors duration-200"
               >
                 <MessageCircle size={16} />
                 WhatsApp
@@ -80,14 +80,14 @@ export default function Footer() {
                 href="https://instagram.com/cleytonvieira"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-white/50 hover:text-[#F59E0B] text-sm transition-colors duration-200"
+                className="flex items-center gap-3 text-white/50 hover:text-[#60A5FA] text-sm transition-colors duration-200"
               >
                 <Instagram size={16} />
                 @cleytonvieira
               </a>
               <a
                 href="mailto:cleyton@email.com"
-                className="flex items-center gap-3 text-white/50 hover:text-[#F59E0B] text-sm transition-colors duration-200"
+                className="flex items-center gap-3 text-white/50 hover:text-[#60A5FA] text-sm transition-colors duration-200"
               >
                 <Mail size={16} />
                 cleyton@email.com

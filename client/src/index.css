@@ -4,10 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * DESIGN SYSTEM — "Garra Brasileira"
+ * DESIGN SYSTEM — "Garra Brasileira" (Azul Edition)
  * Fundo: azul-marinho escuro (#0D1117 → #111827)
- * Acento primário: amarelo-ouro (#F59E0B)
- * Acento secundário: laranja (#EA580C)
+ * Acento primário: azul vibrante (#3B82F6 → #60A5FA)
+ * Acento secundário: azul claro (#0EA5E9)
  * Texto: branco (#FFFFFF) e cinza claro (#D1D5DB)
  * Tipografia: Barlow Condensed (títulos) + Inter (corpo)
  */
@@ -59,32 +59,32 @@
   --card-foreground: oklch(0.95 0 0);
   --popover: oklch(0.14 0.015 240);
   --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.75 0.18 75);
-  --primary-foreground: oklch(0.1 0.015 240);
+  --primary: oklch(0.62 0.22 250);
+  --primary-foreground: oklch(0.98 0 0);
   --secondary: oklch(0.18 0.015 240);
   --secondary-foreground: oklch(0.85 0 0);
   --muted: oklch(0.2 0.012 240);
   --muted-foreground: oklch(0.65 0.01 240);
-  --accent: oklch(0.65 0.2 50);
+  --accent: oklch(0.58 0.2 240);
   --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(0.25 0.015 240);
   --input: oklch(0.2 0.015 240);
   --ring: oklch(0.75 0.18 75);
-  --chart-1: oklch(0.75 0.18 75);
-  --chart-2: oklch(0.65 0.2 50);
-  --chart-3: oklch(0.55 0.15 240);
-  --chart-4: oklch(0.45 0.1 240);
-  --chart-5: oklch(0.35 0.05 240);
+  --chart-1: oklch(0.62 0.22 250);
+  --chart-2: oklch(0.58 0.2 240);
+  --chart-3: oklch(0.52 0.18 245);
+  --chart-4: oklch(0.45 0.15 240);
+  --chart-5: oklch(0.38 0.1 240);
   --sidebar: oklch(0.12 0.015 240);
   --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.75 0.18 75);
+  --sidebar-primary: oklch(0.62 0.22 250);
   --sidebar-primary-foreground: oklch(0.1 0.015 240);
   --sidebar-accent: oklch(0.18 0.015 240);
   --sidebar-accent-foreground: oklch(0.85 0 0);
   --sidebar-border: oklch(0.25 0.015 240);
-  --sidebar-ring: oklch(0.75 0.18 75);
+  --sidebar-ring: oklch(0.62 0.22 250);
 }
 
 @layer base {
@@ -143,17 +143,17 @@
     }
   }
 
-  /* Gold gradient text utility */
+  /* Blue gradient text utility */
   .text-gold-gradient {
-    background: linear-gradient(135deg, #F59E0B 0%, #EA580C 100%);
+    background: linear-gradient(135deg, #60A5FA 0%, #0EA5E9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Gold button */
+  /* Blue button */
   .btn-gold {
-    background: linear-gradient(135deg, #F59E0B 0%, #EA580C 100%);
+    background: linear-gradient(135deg, #60A5FA 0%, #0EA5E9 100%);
     color: #0D1117;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
@@ -162,12 +162,12 @@
     text-transform: uppercase;
     border: none;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+    box-shadow: 0 4px 20px rgba(96, 165, 250, 0.3);
   }
 
   .btn-gold:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(245, 158, 11, 0.5);
+    box-shadow: 0 8px 30px rgba(96, 165, 250, 0.5);
   }
 
   /* Diagonal divider */
@@ -185,10 +185,22 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* Animated gradient background */
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-gradient {
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+  }
+
   /* Pulse animation for badge */
   @keyframes pulse-gold {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
-    50% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(96, 165, 250, 0); }
   }
 
   .pulse-gold {

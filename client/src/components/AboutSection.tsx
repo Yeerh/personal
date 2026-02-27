@@ -41,7 +41,7 @@ export default function AboutSection() {
             <div
               className="relative rounded-sm overflow-hidden"
               style={{
-                boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(245,158,11,0.2)",
+                boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(96,165,250,0.2)",
               }}
             >
               <img
@@ -59,11 +59,11 @@ export default function AboutSection() {
             </div>
             {/* Floating badge */}
             <div
-              className="absolute -bottom-6 -right-4 md:-right-8 bg-[#0D1117] border border-[#F59E0B]/30 rounded-sm px-6 py-4 shadow-2xl"
+              className="absolute -bottom-6 -right-4 md:-right-8 bg-[#0D1117] border border-[#60A5FA]/30 rounded-sm px-6 py-4 shadow-2xl"
             >
               <div
                 className="font-['Barlow_Condensed'] font-black text-3xl"
-                style={{ color: "#F59E0B" }}
+                style={{ color: "#60A5FA" }}
               >
                 CREF
               </div>
@@ -76,12 +76,12 @@ export default function AboutSection() {
           {/* Text side */}
           <div className="order-1 lg:order-2">
             <div
-              className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-sm mb-4"
-              style={{
-                background: "rgba(245,158,11,0.1)",
-                border: "1px solid rgba(245,158,11,0.3)",
-                color: "#F59E0B",
-              }}
+            className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-sm mb-4"
+            style={{
+              background: "rgba(96,165,250,0.1)",
+              border: "1px solid rgba(96,165,250,0.3)",
+              color: "#60A5FA",
+            }}
             >
               Sobre Mim
             </div>
@@ -115,7 +115,7 @@ export default function AboutSection() {
                   <CheckCircle
                     size={18}
                     className="flex-shrink-0 mt-0.5"
-                    style={{ color: "#F59E0B" }}
+                    style={{ color: "#60A5FA" }}
                   />
                   <span className="text-white/70 text-sm leading-snug">{item}</span>
                 </div>
