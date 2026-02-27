@@ -1,12 +1,13 @@
 /*
- * DESIGN: "Garra Brasileira" (Azul Edition) — Hero Section
- * Fundo: gradiente animado azul
- * Texto: branco + azul vibrante
+ * DESIGN: "Garra Brasileira" (Marrom Edition) — Hero Section
+ * Fundo: gradiente animado preto/cinza com toque marrom
+ * Texto: branco + acento marrom
  * Animação: fade-in + translateY na entrada
  */
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import personagemImg from "@/assets/images/personagem.png";
 
 function Counter({ end, suffix = "" }: { end: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -59,7 +60,7 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 z-0 animate-gradient"
         style={{
-          background: `linear-gradient(-45deg, #0D1117, #1E3A8A, #0369A1, #0D1117)`,
+          background: `linear-gradient(-45deg, #080808, #141414, #2a1d14, #080808)`,
           backgroundSize: "400% 400%",
         }}
       />
@@ -69,7 +70,7 @@ export default function HeroSection() {
         className="absolute inset-0 z-0"
         style={{
           background:
-            "linear-gradient(to right, #0D1117 40%, rgba(13,17,23,0.75) 65%, rgba(13,17,23,0.3) 100%)",
+            "linear-gradient(to right, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.72) 65%, rgba(0,0,0,0.28) 100%)",
         }}
       />
 
@@ -77,14 +78,14 @@ export default function HeroSection() {
       <div
         className="absolute top-20 right-10 w-72 h-72 rounded-full opacity-20 blur-3xl z-0 animate-pulse"
         style={{
-          background: "linear-gradient(135deg, #60A5FA, #0EA5E9)",
+          background: "linear-gradient(135deg, var(--brand-1), var(--brand-2))",
           animation: "float 8s ease-in-out infinite",
         }}
       />
       <div
         className="absolute bottom-20 left-10 w-96 h-96 rounded-full opacity-15 blur-3xl z-0 animate-pulse"
         style={{
-          background: "linear-gradient(135deg, #0EA5E9, #0369A1)",
+          background: "linear-gradient(135deg, var(--brand-2), #1f1f1f)",
           animation: "float 10s ease-in-out infinite reverse",
         }}
       />
@@ -98,19 +99,13 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="container relative z-10 pt-24 pb-16">
-        <div className="max-w-2xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-10 items-center">
+          <div className="max-w-2xl">
           {/* Tag */}
           <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm mb-6 text-xs font-semibold uppercase tracking-widest"
-            style={{
-              background: "rgba(96,165,250,0.15)",
-              border: "1px solid rgba(96,165,250,0.4)",
-              color: "#60A5FA",
-            }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm mb-6 text-xs font-semibold uppercase tracking-widest bg-primary/10 border border-primary/30 text-primary"
           >
-            <span
-              className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"
-            />
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             Personal Trainer Profissional
           </div>
 
@@ -123,6 +118,16 @@ export default function HeroSection() {
             <span className="block text-gold-gradient">SEU CORPO</span>
             <span className="block text-white">E SUA VIDA</span>
           </h1>
+
+          {/* Character image (mobile/tablet) */}
+          <div className="flex justify-center lg:hidden -mt-2 mb-6">
+            <img
+              src={personagemImg}
+              alt="Personagem do Cleyton"
+              className="w-[240px] sm:w-[280px] h-auto select-none drop-shadow-[0_25px_60px_rgba(0,0,0,0.55)]"
+              draggable={false}
+            />
+          </div>
 
           {/* Subtitle */}
           <p className="text-white/70 text-lg md:text-xl font-light leading-relaxed mb-8 max-w-lg">
@@ -140,7 +145,7 @@ export default function HeroSection() {
             </button>
             <button
               onClick={scrollToPlans}
-              className="px-8 py-4 rounded-sm text-base font-['Barlow_Condensed'] font-700 uppercase tracking-wide text-white border border-white/30 hover:border-[#60A5FA] hover:text-[#60A5FA] transition-all duration-300"
+              className="px-8 py-4 rounded-sm text-base font-['Barlow_Condensed'] font-700 uppercase tracking-wide text-white border border-white/30 hover:border-primary hover:text-primary transition-all duration-300"
             >
               Ver Planos
             </button>
@@ -154,10 +159,7 @@ export default function HeroSection() {
               { value: 98, suffix: "%", label: "de Satisfação" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <div
-                  className="font-['Barlow_Condensed'] font-black text-3xl md:text-4xl"
-                  style={{ color: "#60A5FA" }}
-                >
+                <div className="font-['Barlow_Condensed'] font-black text-3xl md:text-4xl text-primary">
                   <Counter end={stat.value} suffix={stat.suffix} />
                 </div>
                 <div className="text-white/50 text-xs uppercase tracking-wider mt-1">
@@ -166,13 +168,24 @@ export default function HeroSection() {
               </div>
             ))}
           </div>
+          </div>
+
+          {/* Character image (desktop) */}
+          <div className="hidden lg:flex justify-end">
+            <img
+              src={personagemImg}
+              alt="Personagem do Cleyton"
+              className="w-[320px] xl:w-[380px] h-auto select-none drop-shadow-[0_25px_60px_rgba(0,0,0,0.55)]"
+              draggable={false}
+            />
+          </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
       <button
         onClick={scrollToPlans}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/40 hover:text-[#60A5FA] transition-colors duration-300 animate-bounce"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/40 hover:text-primary transition-colors duration-300 animate-bounce"
       >
         <span className="text-xs uppercase tracking-widest">Rolar</span>
         <ChevronDown size={20} />

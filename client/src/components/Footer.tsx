@@ -12,19 +12,13 @@ export default function Footer() {
   };
 
   return (
-    <footer
-      className="relative pt-16 pb-8"
-      style={{ background: "#080C12", borderTop: "1px solid rgba(255,255,255,0.06)" }}
-    >
+    <footer className="relative pt-16 pb-8 bg-background border-t border-border/50">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span
-                className="font-['Barlow_Condensed'] font-black text-2xl tracking-wide uppercase"
-                style={{ color: "#60A5FA" }}
-              >
+              <span className="font-['Barlow_Condensed'] font-black text-2xl tracking-wide uppercase text-primary">
                 CLEYTON
               </span>
               <span className="font-['Barlow_Condensed'] font-light text-2xl tracking-wide uppercase text-white">
@@ -46,16 +40,17 @@ export default function Footer() {
               {[
                 { label: "Início", id: "hero" },
                 { label: "Sobre", id: "about" },
+                { label: "Evoluções", id: "evolucoes" },
                 { label: "Planos", id: "plans" },
                 { label: "Pré-Cadastro", id: "form" },
               ].map((item) => (
                 <li key={item.id}>
                   <button
-                    onClick={() => scrollTo(item.id)}
-                    className="text-white/50 hover:text-[#60A5FA] text-sm transition-colors duration-200 uppercase tracking-wide"
-                  >
-                    {item.label}
-                  </button>
+                      onClick={() => scrollTo(item.id)}
+                      className="text-white/50 hover:text-primary text-sm transition-colors duration-200 uppercase tracking-wide"
+                    >
+                      {item.label}
+                    </button>
                 </li>
               ))}
             </ul>
@@ -68,10 +63,10 @@ export default function Footer() {
             </h4>
             <div className="space-y-3">
               <a
-                href="https://wa.me/5500000000000"
+                href="https://wa.me/558194077138"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-white/50 hover:text-[#60A5FA] text-sm transition-colors duration-200"
+                className="flex items-center gap-3 text-white/50 hover:text-primary text-sm transition-colors duration-200"
               >
                 <MessageCircle size={16} />
                 WhatsApp
@@ -80,17 +75,17 @@ export default function Footer() {
                 href="https://instagram.com/cleytonvieira"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-white/50 hover:text-[#60A5FA] text-sm transition-colors duration-200"
+                className="flex items-center gap-3 text-white/50 hover:text-primary text-sm transition-colors duration-200"
               >
                 <Instagram size={16} />
                 @cleytonvieira
               </a>
               <a
-                href="mailto:cleyton@email.com"
-                className="flex items-center gap-3 text-white/50 hover:text-[#60A5FA] text-sm transition-colors duration-200"
+                href="mailto:diegogeniu@gmail.com"
+                className="flex items-center gap-3 text-white/50 hover:text-primary text-sm transition-colors duration-200"
               >
                 <Mail size={16} />
-                cleyton@email.com
+                diegogeniu@gmail.com
               </a>
             </div>
           </div>
@@ -98,8 +93,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+          className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border/50"
         >
           <p className="text-white/30 text-xs">
             © {new Date().getFullYear()} Cleyton Vieira Personal Trainer. Todos os direitos reservados.

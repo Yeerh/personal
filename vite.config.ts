@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
+import { sendPreCadastroEmail, type PreCadastroPayload } from "./server/preCadastroEmail";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
@@ -150,7 +151,58 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
+function vitePluginPreCadastroApi(): Plugin {
+  return {
+    name: "pre-cadastro-api",
+    configureServer(server: ViteDevServer) {
+      server.middlewares.use("/api/pre-cadastro", (req, res, next) => {
+        if (req.method !== "POST") return next();
+
+        const handlePayload = async (payload: any) => {
+          await sendPreCadastroEmail({
+            name: String(payload?.name || ""),
+            whatsapp: String(payload?.whatsapp || ""),
+            instagram: payload?.instagram ? String(payload.instagram) : "",
+            trainingStatus: String(payload?.trainingStatus || ""),
+            objective: String(payload?.objective || ""),
+            pain: payload?.pain ? String(payload.pain) : "",
+            submittedAtISO: payload?.submittedAtISO ? String(payload.submittedAtISO) : undefined,
+            userAgent: req.headers["user-agent"] || "",
+          } satisfies PreCadastroPayload);
+
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ ok: true }));
+        };
+
+        let body = "";
+        req.on("data", (chunk) => {
+          body += chunk.toString();
+        });
+        req.on("end", () => {
+          try {
+            const payload = JSON.parse(body || "{}");
+            void handlePayload(payload).catch((e) => {
+              res.writeHead(500, { "Content-Type": "application/json" });
+              res.end(JSON.stringify({ ok: false, error: String(e) }));
+            });
+          } catch (e) {
+            res.writeHead(400, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ ok: false, error: String(e) }));
+          }
+        });
+      });
+    },
+  };
+}
+
+const plugins = [
+  react(),
+  tailwindcss(),
+  jsxLocPlugin(),
+  vitePluginManusRuntime(),
+  vitePluginPreCadastroApi(),
+  vitePluginManusDebugCollector(),
+];
 
 export default defineConfig({
   plugins,

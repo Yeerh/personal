@@ -7,6 +7,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import logo2 from "@/assets/images/logo-2.png";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -28,25 +29,22 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#0D1117]/95 backdrop-blur-md shadow-lg shadow-black/30"
+          ? "bg-background/95 backdrop-blur-md shadow-lg shadow-black/30"
           : "bg-transparent"
       }`}
     >
-      <div className="container flex items-center justify-between h-16 md:h-20">
+      <div className="container flex items-center justify-between h-20 md:h-24">
         {/* Logo */}
         <button
           onClick={() => scrollTo("hero")}
           className="flex items-center gap-2 group"
         >
-          <span
-            className="font-['Barlow_Condensed'] font-black text-2xl md:text-3xl tracking-wide uppercase"
-            style={{ color: "#60A5FA" }}
-          >
-            CLEYTON
-          </span>
-          <span className="font-['Barlow_Condensed'] font-light text-2xl md:text-3xl tracking-wide uppercase text-white">
-            VIEIRA
-          </span>
+          <img
+            src={logo2}
+            alt="Cleyton Vieira"
+            className="h-14 md:h-16 lg:h-20 w-auto"
+            draggable={false}
+          />
         </button>
 
         {/* Desktop links */}
@@ -54,13 +52,14 @@ export default function Navbar() {
           {[
             { label: "Início", id: "hero" },
             { label: "Sobre", id: "about" },
+            { label: "Evoluções", id: "evolucoes" },
             { label: "Planos", id: "plans" },
             { label: "Pré-Cadastro", id: "form" },
           ].map((item) => (
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
-              className="text-white/80 hover:text-[#60A5FA] font-medium text-sm tracking-wide transition-colors duration-200 uppercase font-['Inter']"
+              className="text-white/80 hover:text-primary font-medium text-sm tracking-wide transition-colors duration-200 uppercase font-['Inter']"
             >
               {item.label}
             </button>
@@ -84,18 +83,19 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0D1117]/98 backdrop-blur-md border-t border-white/10">
+        <div className="md:hidden bg-background/98 backdrop-blur-md border-t border-border/50">
           <div className="container py-4 flex flex-col gap-4">
             {[
               { label: "Início", id: "hero" },
               { label: "Sobre", id: "about" },
+              { label: "Evoluções", id: "evolucoes" },
               { label: "Planos", id: "plans" },
               { label: "Pré-Cadastro", id: "form" },
             ].map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className="text-white/80 hover:text-[#60A5FA] font-medium text-base tracking-wide transition-colors duration-200 uppercase text-left py-2 border-b border-white/5"
+                className="text-white/80 hover:text-primary font-medium text-base tracking-wide transition-colors duration-200 uppercase text-left py-2 border-b border-white/5"
               >
                 {item.label}
               </button>

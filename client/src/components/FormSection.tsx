@@ -34,12 +34,15 @@ const objectiveOptions = [
   { value: "outro", label: "Outro" },
 ];
 
-const WHATSAPP_NUMBER = "5500000000000"; // Substituir pelo número real do Cleyton
-const EMAIL = "cleyton@email.com"; // Substituir pelo email real do Cleyton
+const WHATSAPP_NUMBER = "558194077138"; // +55 81 9407-7138 (apenas números)
+const EMAIL = "diegogeniu@gmail.com";
 
 export default function FormSection() {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const [emailStatus, setEmailStatus] = useState<
+    "idle" | "sending" | "sent" | "failed"
+  >("idle");
   const [formData, setFormData] = useState<FormData>({
     name: "",
     whatsapp: "",
@@ -50,6 +53,13 @@ export default function FormSection() {
   });
 
   const totalSteps = 3;
+
+  const trainingStatusLabel =
+    trainingOptions.find((o) => o.value === formData.trainingStatus)?.label ||
+    formData.trainingStatus;
+  const objectiveLabel =
+    objectiveOptions.find((o) => o.value === formData.objective)?.label ||
+    formData.objective;
 
   const update = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -68,49 +78,68 @@ export default function FormSection() {
         `👤 *Nome:* ${formData.name}\n` +
         `📱 *WhatsApp:* ${formData.whatsapp}\n` +
         `📸 *Instagram:* ${formData.instagram || "Não informado"}\n\n` +
-        `🏋️ *Status de treino:* ${trainingOptions.find((o) => o.value === formData.trainingStatus)?.label || formData.trainingStatus}\n` +
-        `🎯 *Objetivo:* ${objectiveOptions.find((o) => o.value === formData.objective)?.label || formData.objective}\n\n` +
+        `🏋️ *Status de treino:* ${trainingStatusLabel}\n` +
+        `🎯 *Objetivo:* ${objectiveLabel}\n\n` +
         `💊 *Dores/desconfortos:* ${formData.pain || "Nenhum informado"}\n\n` +
         `_Enviado pelo site cleytonvieira.com.br_`
     );
 
-    // Open WhatsApp
+    // Open WhatsApp (keep as direct user gesture)
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
 
-    // Also open email
-    const emailSubject = encodeURIComponent(
-      `Pré-Cadastro: ${formData.name}`
-    );
-    const emailBody = encodeURIComponent(
-      `PRÉ-CADASTRO — Cleyton Vieira Personal Trainer\n\n` +
-        `Nome: ${formData.name}\n` +
-        `WhatsApp: ${formData.whatsapp}\n` +
-        `Instagram: ${formData.instagram || "Não informado"}\n\n` +
-        `Status de treino: ${trainingOptions.find((o) => o.value === formData.trainingStatus)?.label || formData.trainingStatus}\n` +
-        `Objetivo: ${objectiveOptions.find((o) => o.value === formData.objective)?.label || formData.objective}\n\n` +
-        `Dores/desconfortos: ${formData.pain || "Nenhum informado"}`
-    );
-    window.open(
-      `mailto:${EMAIL}?subject=${emailSubject}&body=${emailBody}`,
-      "_blank"
-    );
+    // Send email automatically via API (server-side). Falls back to manual mailto in UI if it fails.
+    setEmailStatus("sending");
+    fetch("/api/pre-cadastro", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: formData.name,
+        whatsapp: formData.whatsapp,
+        instagram: formData.instagram,
+        trainingStatus: trainingStatusLabel,
+        objective: objectiveLabel,
+        pain: formData.pain,
+        submittedAtISO: new Date().toISOString(),
+      }),
+    })
+      .then(async (r) => {
+        if (!r.ok) throw new Error(await r.text());
+        setEmailStatus("sent");
+      })
+      .catch(() => {
+        setEmailStatus("failed");
+      });
 
     setSubmitted(true);
   };
 
   if (submitted) {
+    const manualEmailSubject = encodeURIComponent(`Pré-Cadastro: ${formData.name}`);
+    const manualEmailBody = encodeURIComponent(
+      `PRÉ-CADASTRO — Cleyton Vieira Personal Trainer\n\n` +
+        `Nome: ${formData.name}\n` +
+        `WhatsApp: ${formData.whatsapp}\n` +
+        `Instagram: ${formData.instagram || "Não informado"}\n\n` +
+        `Status de treino: ${trainingStatusLabel}\n` +
+        `Objetivo: ${objectiveLabel}\n\n` +
+        `Dores/desconfortos: ${formData.pain || "Nenhum informado"}`
+    );
+
     return (
       <section
         id="form"
         className="relative py-20 md:py-28"
-        style={{ background: "linear-gradient(135deg, #0D1117 0%, #111827 100%)" }}
+        style={{ background: "linear-gradient(135deg, var(--background) 0%, var(--card) 100%)" }}
       >
         <div className="container max-w-2xl mx-auto text-center">
           <div
             className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
-            style={{ background: "rgba(96,165,250,0.15)", border: "2px solid #60A5FA" }}
+            style={{
+              background: "rgb(var(--brand-2-rgb) / 0.15)",
+              border: "2px solid var(--brand-1)",
+            }}
           >
-            <CheckCircle size={40} style={{ color: "#60A5FA" }} />
+            <CheckCircle size={40} style={{ color: "var(--brand-1)" }} />
           </div>
           <h2
             className="font-['Barlow_Condensed'] font-black uppercase text-white mb-4"
@@ -122,14 +151,36 @@ export default function FormSection() {
             Suas informações foram enviadas com sucesso. Em breve o Cleyton
             entrará em contato explicando como funciona a metodologia de treino.
           </p>
+          {emailStatus === "sending" && (
+            <p className="text-white/50 text-sm mt-2">
+              Enviando e-mail automático…
+            </p>
+          )}
+          {emailStatus === "sent" && (
+            <p className="text-white/50 text-sm mt-2">
+              E-mail enviado para {EMAIL}.
+            </p>
+          )}
+          {emailStatus === "failed" && (
+            <p className="text-white/50 text-sm mt-2">
+              Não consegui enviar o e-mail automaticamente. Você pode enviar manualmente por aqui:{" "}
+              <a
+                href={`mailto:${EMAIL}?subject=${manualEmailSubject}&body=${manualEmailBody}`}
+                className="text-primary underline underline-offset-4"
+              >
+                enviar e-mail
+              </a>
+              .
+            </p>
+          )}
           <div
             className="rounded-sm p-5 text-left mt-6"
             style={{
-              background: "rgba(96,165,250,0.08)",
-              border: "1px solid rgba(96,165,250,0.3)",
+              background: "rgb(var(--brand-2-rgb) / 0.08)",
+              border: "1px solid rgb(var(--brand-2-rgb) / 0.3)",
             }}
           >
-            <p className="text-[#60A5FA] font-semibold text-sm mb-2 uppercase tracking-wide">
+            <p className="text-primary font-semibold text-sm mb-2 uppercase tracking-wide">
               Lembre-se
             </p>
             <p className="text-white/70 text-sm leading-relaxed">
@@ -150,24 +201,21 @@ export default function FormSection() {
     <section
       id="form"
       className="relative py-20 md:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #0D1117 0%, #111827 100%)" }}
+      style={{ background: "linear-gradient(135deg, var(--background) 0%, var(--card) 100%)" }}
     >
       {/* Decorative element */}
       <div
         className="absolute top-0 left-0 right-0 h-1"
-        style={{ background: "linear-gradient(90deg, #60A5FA, #0EA5E9, #60A5FA)" }}
+        style={{
+          background: "linear-gradient(90deg, var(--brand-2), var(--brand-1), var(--brand-2))",
+        }}
       />
 
       <div className="container max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
           <div
-            className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-sm mb-4"
-            style={{
-              background: "rgba(96,165,250,0.1)",
-              border: "1px solid rgba(96,165,250,0.3)",
-              color: "#60A5FA",
-            }}
+            className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-sm mb-4 bg-primary/10 border border-primary/30 text-primary"
           >
             Gratuito
           </div>
@@ -194,7 +242,7 @@ export default function FormSection() {
                 style={{
                   background:
                     i + 1 <= step
-                      ? "linear-gradient(90deg, #60A5FA, #0EA5E9)"
+                      ? "linear-gradient(90deg, var(--brand-2), var(--brand-1))"
                       : "rgba(255,255,255,0.1)",
                 }}
               />
@@ -223,7 +271,7 @@ export default function FormSection() {
 
               <div>
                 <label className="block text-white/60 text-sm mb-2 uppercase tracking-wide">
-                  Qual o seu nome? <span style={{ color: "#60A5FA" }}>*</span>
+                  Qual o seu nome? <span className="text-primary">*</span>
                 </label>
                 <input
                   type="text"
@@ -236,7 +284,7 @@ export default function FormSection() {
 
               <div>
                 <label className="block text-white/60 text-sm mb-2 uppercase tracking-wide">
-                  Qual o seu WhatsApp? <span style={{ color: "#60A5FA" }}>*</span>
+                  Qual o seu WhatsApp? <span className="text-primary">*</span>
                 </label>
                 <input
                   type="tel"
@@ -274,7 +322,7 @@ export default function FormSection() {
               <div>
                 <label className="block text-white/60 text-sm mb-3 uppercase tracking-wide">
                   Você já está treinando ou pretende começar a treinar em 2025?{" "}
-                  <span style={{ color: "#60A5FA" }}>*</span>
+                  <span className="text-primary">*</span>
                 </label>
                 <div className="space-y-2.5">
                   {trainingOptions.map((opt) => (
@@ -284,11 +332,11 @@ export default function FormSection() {
                       style={{
                         background:
                           formData.trainingStatus === opt.value
-                            ? "rgba(96,165,250,0.12)"
+                            ? "rgb(var(--brand-2-rgb) / 0.12)"
                             : "rgba(255,255,255,0.03)",
                         border:
                           formData.trainingStatus === opt.value
-                            ? "1.5px solid rgba(96,165,250,0.5)"
+                            ? "1.5px solid rgb(var(--brand-2-rgb) / 0.5)"
                             : "1px solid rgba(255,255,255,0.07)",
                       }}
                     >
@@ -297,16 +345,16 @@ export default function FormSection() {
                         style={{
                           borderColor:
                             formData.trainingStatus === opt.value
-                              ? "#60A5FA"
+                              ? "var(--brand-1)"
                               : "rgba(255,255,255,0.3)",
                           background:
                             formData.trainingStatus === opt.value
-                              ? "#60A5FA"
+                              ? "var(--brand-1)"
                               : "transparent",
                         }}
                       >
                         {formData.trainingStatus === opt.value && (
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#0D1117]" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-background" />
                         )}
                       </div>
                       <input
@@ -326,7 +374,7 @@ export default function FormSection() {
               <div>
                 <label className="block text-white/60 text-sm mb-3 uppercase tracking-wide">
                   Qual o seu objetivo?{" "}
-                  <span style={{ color: "#60A5FA" }}>*</span>
+                  <span className="text-primary">*</span>
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {objectiveOptions.map((opt) => (
@@ -336,11 +384,11 @@ export default function FormSection() {
                       style={{
                         background:
                           formData.objective === opt.value
-                            ? "rgba(96,165,250,0.12)"
+                            ? "rgb(var(--brand-2-rgb) / 0.12)"
                             : "rgba(255,255,255,0.03)",
                         border:
                           formData.objective === opt.value
-                            ? "1.5px solid rgba(96,165,250,0.5)"
+                            ? "1.5px solid rgb(var(--brand-2-rgb) / 0.5)"
                             : "1px solid rgba(255,255,255,0.07)",
                       }}
                     >
@@ -349,11 +397,11 @@ export default function FormSection() {
                         style={{
                           borderColor:
                             formData.objective === opt.value
-                              ? "#60A5FA"
+                              ? "var(--brand-1)"
                               : "rgba(255,255,255,0.3)",
                           background:
                             formData.objective === opt.value
-                              ? "#60A5FA"
+                              ? "var(--brand-1)"
                               : "transparent",
                         }}
                       >
@@ -361,7 +409,7 @@ export default function FormSection() {
                           <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
                             <path
                               d="M1 4L3.5 6.5L9 1"
-                              stroke="#0D1117"
+                              stroke="var(--background)"
                               strokeWidth="2"
                               strokeLinecap="round"
                               strokeLinejoin="round"
@@ -412,12 +460,12 @@ export default function FormSection() {
               <div
                 className="rounded-sm p-5"
                 style={{
-                  background: "rgba(96,165,250,0.06)",
-                  border: "1px solid rgba(96,165,250,0.25)",
+                  background: "rgb(var(--brand-2-rgb) / 0.06)",
+                  border: "1px solid rgb(var(--brand-2-rgb) / 0.25)",
                 }}
               >
                 <p className="text-white/70 text-sm leading-relaxed mb-3">
-                  <span style={{ color: "#60A5FA" }} className="font-semibold">
+                  <span className="text-primary font-semibold">
                     Importante:
                   </span>{" "}
                   Nenhuma das respostas acima influencia no valor da consultoria.
@@ -478,11 +526,11 @@ export default function FormSection() {
                 className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-sm font-['Barlow_Condensed'] font-black uppercase tracking-wide text-base transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{
                   background: canProceed()
-                    ? "linear-gradient(135deg, #60A5FA, #0EA5E9)"
-                    : "rgba(96,165,250,0.3)",
-                  color: "#0D1117",
+                    ? "linear-gradient(135deg, var(--brand-1), var(--brand-2))"
+                    : "rgb(var(--brand-2-rgb) / 0.3)",
+                  color: "var(--background)",
                   boxShadow: canProceed()
-                    ? "0 4px 20px rgba(96,165,250,0.3)"
+                    ? "0 4px 20px rgb(var(--brand-1-rgb) / 0.25)"
                     : "none",
                 }}
               >
@@ -494,9 +542,9 @@ export default function FormSection() {
                 onClick={handleSubmit}
                 className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-sm font-['Barlow_Condensed'] font-black uppercase tracking-wide text-base transition-all duration-300"
                 style={{
-                  background: "linear-gradient(135deg, #60A5FA, #0EA5E9)",
-                  color: "#0D1117",
-                  boxShadow: "0 4px 20px rgba(96,165,250,0.4)",
+                  background: "linear-gradient(135deg, var(--brand-1), var(--brand-2))",
+                  color: "var(--background)",
+                  boxShadow: "0 4px 20px rgb(var(--brand-1-rgb) / 0.35)",
                 }}
               >
                 <Send size={16} />

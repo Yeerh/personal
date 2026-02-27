@@ -4,10 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * DESIGN SYSTEM — "Garra Brasileira" (Azul Edition)
- * Fundo: azul-marinho escuro (#0D1117 → #111827)
- * Acento primário: azul vibrante (#3B82F6 → #60A5FA)
- * Acento secundário: azul claro (#0EA5E9)
+ * DESIGN SYSTEM — "Garra Brasileira" (Marrom/Preto/Cinza)
+ * Base: preto/cinza escuro (background/card)
+ * Acento primário: marrom (var(--brand-2) → var(--brand-1))
+ * Acento secundário: cinza
  * Texto: branco (#FFFFFF) e cinza claro (#D1D5DB)
  * Tipografia: Barlow Condensed (títulos) + Inter (corpo)
  */
@@ -53,38 +53,45 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.1 0.015 240);
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.14 0.015 240);
-  --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.14 0.015 240);
-  --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.62 0.22 250);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.18 0.015 240);
-  --secondary-foreground: oklch(0.85 0 0);
-  --muted: oklch(0.2 0.012 240);
-  --muted-foreground: oklch(0.65 0.01 240);
-  --accent: oklch(0.58 0.2 240);
-  --accent-foreground: oklch(0.98 0 0);
+
+  /* Brand (marrom) */
+  --brand-1: #c08a5a;
+  --brand-2: #8b5e34;
+  --brand-1-rgb: 192 138 90;
+  --brand-2-rgb: 139 94 52;
+
+  --background: oklch(0.12 0.005 60);
+  --foreground: oklch(0.96 0 0);
+  --card: oklch(0.16 0.005 60);
+  --card-foreground: oklch(0.96 0 0);
+  --popover: oklch(0.16 0.005 60);
+  --popover-foreground: oklch(0.96 0 0);
+  --primary: oklch(0.62 0.11 55);
+  --primary-foreground: oklch(0.12 0.005 60);
+  --secondary: oklch(0.22 0.004 60);
+  --secondary-foreground: oklch(0.92 0 0);
+  --muted: oklch(0.20 0.003 60);
+  --muted-foreground: oklch(0.72 0.004 60);
+  --accent: oklch(0.24 0.004 60);
+  --accent-foreground: oklch(0.96 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.25 0.015 240);
-  --input: oklch(0.2 0.015 240);
-  --ring: oklch(0.75 0.18 75);
-  --chart-1: oklch(0.62 0.22 250);
-  --chart-2: oklch(0.58 0.2 240);
-  --chart-3: oklch(0.52 0.18 245);
-  --chart-4: oklch(0.45 0.15 240);
-  --chart-5: oklch(0.38 0.1 240);
-  --sidebar: oklch(0.12 0.015 240);
-  --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.62 0.22 250);
-  --sidebar-primary-foreground: oklch(0.1 0.015 240);
-  --sidebar-accent: oklch(0.18 0.015 240);
-  --sidebar-accent-foreground: oklch(0.85 0 0);
-  --sidebar-border: oklch(0.25 0.015 240);
-  --sidebar-ring: oklch(0.62 0.22 250);
+  --border: oklch(0.28 0.004 60);
+  --input: oklch(0.22 0.004 60);
+  --ring: oklch(0.72 0.12 65);
+  --chart-1: oklch(0.62 0.11 55);
+  --chart-2: oklch(0.72 0.12 65);
+  --chart-3: oklch(0.58 0.08 70);
+  --chart-4: oklch(0.52 0.05 80);
+  --chart-5: oklch(0.46 0.02 60);
+  --sidebar: oklch(0.14 0.004 60);
+  --sidebar-foreground: oklch(0.96 0 0);
+  --sidebar-primary: oklch(0.62 0.11 55);
+  --sidebar-primary-foreground: oklch(0.12 0.005 60);
+  --sidebar-accent: oklch(0.22 0.004 60);
+  --sidebar-accent-foreground: oklch(0.92 0 0);
+  --sidebar-border: oklch(0.28 0.004 60);
+  --sidebar-ring: oklch(0.72 0.12 65);
 }
 
 @layer base {
@@ -145,7 +152,7 @@
 
   /* Blue gradient text utility */
   .text-gold-gradient {
-    background: linear-gradient(135deg, #60A5FA 0%, #0EA5E9 100%);
+    background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -153,8 +160,8 @@
 
   /* Blue button */
   .btn-gold {
-    background: linear-gradient(135deg, #60A5FA 0%, #0EA5E9 100%);
-    color: #0D1117;
+    background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%);
+    color: var(--background);
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
     font-size: 1.1rem;
@@ -162,12 +169,12 @@
     text-transform: uppercase;
     border: none;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(96, 165, 250, 0.3);
+    box-shadow: 0 4px 20px rgb(var(--brand-1-rgb) / 0.22);
   }
 
   .btn-gold:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(96, 165, 250, 0.5);
+    box-shadow: 0 8px 30px rgb(var(--brand-1-rgb) / 0.38);
   }
 
   /* Diagonal divider */
@@ -199,8 +206,8 @@
 
   /* Pulse animation for badge */
   @keyframes pulse-gold {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.4); }
-    50% { box-shadow: 0 0 0 8px rgba(96, 165, 250, 0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgb(var(--brand-1-rgb) / 0.35); }
+    50% { box-shadow: 0 0 0 8px rgb(var(--brand-1-rgb) / 0); }
   }
 
   .pulse-gold {
@@ -209,15 +216,15 @@
 
   /* Form input styling */
   .form-input-dark {
-    background: oklch(0.18 0.015 240);
-    border: 1.5px solid oklch(0.28 0.015 240);
+    background: oklch(0.22 0.004 60);
+    border: 1.5px solid oklch(0.30 0.004 60);
     color: white;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
   .form-input-dark:focus {
-    border-color: #F59E0B;
-    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+    border-color: var(--brand-1);
+    box-shadow: 0 0 0 3px rgb(var(--brand-2-rgb) / 0.18);
     outline: none;
   }
 
@@ -227,7 +234,7 @@
     font-weight: 900;
     font-size: 8rem;
     line-height: 1;
-    color: oklch(0.25 0.015 240);
+    color: oklch(0.30 0.004 60);
     position: absolute;
     top: -1rem;
     left: -1rem;

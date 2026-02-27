@@ -22,16 +22,12 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative py-20 md:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #0D1117 0%, #111827 100%)" }}
+      className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-br from-background to-card"
     >
       {/* Diagonal top divider */}
       <div
-        className="absolute top-0 left-0 right-0 h-16 z-10"
-        style={{
-          background: "linear-gradient(135deg, #0D1117 0%, #111827 100%)",
-          clipPath: "polygon(0 0, 100% 0, 100% 0, 0 100%)",
-        }}
+        className="absolute top-0 left-0 right-0 h-16 z-10 bg-gradient-to-br from-background to-card"
+        style={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 100%)" }}
       />
 
       <div className="container relative z-10">
@@ -41,7 +37,8 @@ export default function AboutSection() {
             <div
               className="relative rounded-sm overflow-hidden"
               style={{
-                boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(96,165,250,0.2)",
+                boxShadow:
+                  "0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgb(var(--brand-1-rgb) / 0.22)",
               }}
             >
               <img
@@ -59,12 +56,9 @@ export default function AboutSection() {
             </div>
             {/* Floating badge */}
             <div
-              className="absolute -bottom-6 -right-4 md:-right-8 bg-[#0D1117] border border-[#60A5FA]/30 rounded-sm px-6 py-4 shadow-2xl"
+              className="absolute -bottom-6 -right-4 md:-right-8 bg-background border border-primary/30 rounded-sm px-6 py-4 shadow-2xl"
             >
-              <div
-                className="font-['Barlow_Condensed'] font-black text-3xl"
-                style={{ color: "#60A5FA" }}
-              >
+              <div className="font-['Barlow_Condensed'] font-black text-3xl text-primary">
                 CREF
               </div>
               <div className="text-white/60 text-xs uppercase tracking-wider">
@@ -75,14 +69,7 @@ export default function AboutSection() {
 
           {/* Text side */}
           <div className="order-1 lg:order-2">
-            <div
-            className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-sm mb-4"
-            style={{
-              background: "rgba(96,165,250,0.1)",
-              border: "1px solid rgba(96,165,250,0.3)",
-              color: "#60A5FA",
-            }}
-            >
+            <div className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-sm mb-4 bg-primary/10 border border-primary/30 text-primary">
               Sobre Mim
             </div>
 
@@ -114,8 +101,7 @@ export default function AboutSection() {
                 <div key={item} className="flex items-start gap-3">
                   <CheckCircle
                     size={18}
-                    className="flex-shrink-0 mt-0.5"
-                    style={{ color: "#60A5FA" }}
+                    className="flex-shrink-0 mt-0.5 text-primary"
                   />
                   <span className="text-white/70 text-sm leading-snug">{item}</span>
                 </div>
