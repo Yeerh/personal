@@ -32,10 +32,10 @@ type Plan = {
 // Plans data
 const plans: Plan[] = [
   {
-    id: "premium-trimestral",
+    id: "premium",
     badge: "PLANO PREMIUM",
     title: "CONSULTORIA ONLINE",
-    subtitle: "TRIMESTRAL (3 MESES)",
+    subtitle: "TRIMESTRAL (3 MESES) / SEMESTRAL (6 MESES)",
     featured: true,
     highlight: true,
     features: [
@@ -50,24 +50,6 @@ const plans: Plan[] = [
         price: "R$ 250,00 (PIX)",
         installment: "ou 3x de R$ 90,00 no cartão",
       },
-    ],
-    payment: "PIX ou cartão de crédito",
-    cta: "Fazer Pré-Cadastro",
-  },
-  {
-    id: "premium-semestral",
-    badge: "PLANO PREMIUM",
-    title: "CONSULTORIA ONLINE",
-    subtitle: "SEMESTRAL (6 MESES)",
-    featured: false,
-    highlight: false,
-    features: [
-      "Consulta via videochamada",
-      "Avaliação por fotos",
-      "Treino via APP com vídeos demonstrativos",
-      "Suporte VIP",
-    ],
-    pricing: [
       {
         label: "Semestral (6 meses)",
         price: "R$ 450,00 (PIX)",
@@ -78,7 +60,7 @@ const plans: Plan[] = [
     cta: "Fazer Pré-Cadastro",
   },
   {
-    id: "platinum-trimestral",
+    id: "platinum",
     badge: "PLANO PLATINUM",
     title: "CONSULTORIA ONLINE",
     subtitle: "TRIMESTRAL (3 MESES)",
@@ -125,10 +107,10 @@ const plans: Plan[] = [
     cta: "Fazer Pré-Cadastro",
   },
   {
-    id: "platinum-dieta-trimestral",
+    id: "platinum-dieta",
     badge: "PLANO PLATINUM",
     title: "TREINO E DIETA",
-    subtitle: "TRIMESTRAL (3 MESES)",
+    subtitle: "TRIMESTRAL (3 MESES) / SEMESTRAL (6 MESES)",
     featured: false,
     highlight: false,
     features: [
@@ -144,27 +126,8 @@ const plans: Plan[] = [
         price: "R$ 500,00 (PIX)",
         installment: "ou 3x de R$ 179,00 no cartão",
       },
-    ],
-    payment: "PIX ou cartão de crédito",
-    cta: "Fazer Pré-Cadastro",
-  },
-  {
-    id: "platinum-dieta-semestral",
-    badge: "PLANO PLATINUM",
-    title: "TREINO E DIETA",
-    subtitle: "SEMESTRAL (6 MESES)",
-    featured: false,
-    highlight: false,
-    features: [
-      "Consulta presencial (inicial e final)",
-      "Avaliação física",
-      "Treino via APP com vídeos demonstrativos",
-      "Dieta personalizada",
-      "Suporte VIP",
-    ],
-    pricing: [
       {
-        label: "Semestral (6 meses)",
+        label: "Semestral (6 meses) (consulta presencial inicial e final)",
         price: "R$ 750,00 (PIX)",
         installment: "ou 6x de R$ 134,00 no cartão",
       },
