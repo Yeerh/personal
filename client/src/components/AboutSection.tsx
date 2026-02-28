@@ -52,7 +52,7 @@ export default function AboutSection() {
                   Treino personalizado
                 </div>
                 <div className="mt-3 text-white/80 text-sm leading-relaxed max-w-md">
-                  Acompanhamento e metodologia para evoluÃ§Ã£o constante com seguranÃ§a.
+                  Acompanhamento e metodologia para evolução constante com segurança.
                 </div>
               </div>
             </div>
