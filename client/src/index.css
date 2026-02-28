@@ -98,6 +98,9 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
@@ -108,6 +111,11 @@
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: rgb(var(--brand-1-rgb) / 0.28);
+    color: oklch(0.98 0 0);
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Barlow Condensed', sans-serif;
@@ -125,6 +133,15 @@
   input[type="checkbox"]:not(:disabled),
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient {
+    animation: none !important;
+  }
+  .pulse-gold {
+    animation: none !important;
   }
 }
 

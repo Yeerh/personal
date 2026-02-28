@@ -59,7 +59,7 @@ export default function Navbar() {
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
-              className="text-white/80 hover:text-primary font-medium text-sm tracking-wide transition-colors duration-200 uppercase font-['Inter']"
+              className="relative text-white/75 hover:text-white font-medium text-sm tracking-wide transition-colors duration-200 uppercase font-['Inter'] after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
             >
               {item.label}
             </button>
@@ -95,7 +95,7 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className="text-white/80 hover:text-primary font-medium text-base tracking-wide transition-colors duration-200 uppercase text-left py-2 border-b border-white/5"
+                className="relative text-white/80 hover:text-white font-medium text-base tracking-wide transition-colors duration-200 uppercase text-left py-2 border-b border-white/5 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               >
                 {item.label}
               </button>

@@ -7,6 +7,7 @@
 
 import { useState } from "react";
 import { CheckCircle, Send, ChevronRight, ChevronLeft } from "lucide-react";
+import { Reveal } from "@/components/Reveal";
 
 interface FormData {
   name: string;
@@ -211,6 +212,7 @@ export default function FormSection() {
 
       <div className="container max-w-2xl mx-auto">
         {/* Header */}
+        <Reveal>
         <div className="text-center mb-10">
           <div
             className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-sm mb-4 bg-primary/10 border border-primary/30 text-primary"
@@ -230,6 +232,7 @@ export default function FormSection() {
             necessidades e iniciar o atendimento.
           </p>
         </div>
+        </Reveal>
 
         {/* Progress bar */}
         <div className="flex items-center gap-2 mb-8">
@@ -252,14 +255,8 @@ export default function FormSection() {
         </p>
 
         {/* Form card */}
-        <div
-          className="rounded-sm p-7 md:p-10"
-          style={{
-            background: "rgba(17,24,39,0.8)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
-          }}
-        >
+        <Reveal delay={0.06}>
+        <div className="rounded-sm p-7 md:p-10 bg-black/30 backdrop-blur-md border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
           {/* Step 1: Personal info */}
           {step === 1 && (
             <div className="space-y-6 animate-fade-in-up">
@@ -551,6 +548,7 @@ export default function FormSection() {
             )}
           </div>
         </div>
+        </Reveal>
       </div>
     </section>
   );

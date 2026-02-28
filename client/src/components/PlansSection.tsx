@@ -6,6 +6,7 @@
  */
 
 import { Check, Star } from "lucide-react";
+import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
 
 type PricingOption = {
   label: string;
@@ -207,6 +208,7 @@ export default function PlansSection() {
 
       <div className="container relative z-10">
         {/* Header */}
+        <Reveal>
         <div className="text-center mb-14">
           <div
             className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-sm mb-4 bg-primary/10 border border-primary/30 text-primary"
@@ -226,13 +228,17 @@ export default function PlansSection() {
             Escolha o plano e comece a treinar de verdade.
           </p>
         </div>
+        </Reveal>
 
         {/* Plans grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+        <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {featuredPlans.map((plan) => (
-            <div
+            <StaggerItem
               key={plan.id}
-              className={`relative flex flex-col rounded-sm overflow-hidden transition-transform duration-300 hover:-translate-y-2 ${
+              whileHover={{ y: -10 }}
+              whileTap={{ scale: 0.99 }}
+              transition={{ type: "spring", stiffness: 260, damping: 24 }}
+              className={`relative flex flex-col rounded-sm overflow-hidden transition-transform duration-500 ${
                 plan.highlight
                   ? "md:scale-105"
                   : plan.featured
@@ -252,7 +258,7 @@ export default function PlansSection() {
                   ? "0 20px 60px rgb(var(--brand-1-rgb) / 0.16), 0 0 0 1px rgb(var(--brand-1-rgb) / 0.22)"
                   : plan.featured
                     ? "0 18px 55px rgba(0,0,0,0.45)"
-                    : "0 10px 40px rgba(0,0,0,0.4)",
+                  : "0 10px 40px rgba(0,0,0,0.4)",
               }}
             >
               {/* Popular badge */}
@@ -352,20 +358,23 @@ export default function PlansSection() {
                   {plan.cta}
                 </button>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
         {/* Other plans */}
         <details className="mt-12">
           <summary className="cursor-pointer select-none text-white/80 hover:text-white transition-colors uppercase tracking-widest text-sm font-semibold">
             Ver todos os planos ({plans.length})
           </summary>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+          <Stagger className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
             {otherPlans.map((plan) => (
-              <div
+              <StaggerItem
                 key={plan.id}
-                className="relative flex flex-col rounded-sm overflow-hidden transition-transform duration-300 hover:-translate-y-2"
+                whileHover={{ y: -10 }}
+                whileTap={{ scale: 0.99 }}
+                transition={{ type: "spring", stiffness: 260, damping: 24 }}
+                className="relative flex flex-col rounded-sm overflow-hidden transition-transform duration-500"
                 style={{
                   background: "rgba(20,20,20,0.8)",
                   border: "1px solid rgba(255,255,255,0.08)",
@@ -439,9 +448,9 @@ export default function PlansSection() {
                     {plan.cta}
                   </button>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </details>
 
         {/* Disclaimer */}

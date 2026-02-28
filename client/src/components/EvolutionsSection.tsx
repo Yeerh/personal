@@ -10,6 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useMemo, useState } from "react";
+import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
 
 type EvolutionImage = {
   src: string;
@@ -42,48 +43,55 @@ export default function EvolutionsSection() {
     >
       <div className="container relative z-10">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-sm mb-4 bg-primary/10 border border-primary/30 text-primary">
-            Resultados
+        <Reveal>
+          <div className="text-center mb-12">
+            <div className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest rounded-sm mb-4 bg-primary/10 border border-primary/30 text-primary">
+              Resultados
+            </div>
+            <h2
+              className="font-['Barlow_Condensed'] font-black uppercase leading-none text-white"
+              style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
+            >
+              EVOLUÇÕES
+              <br />
+              <span className="text-gold-gradient">NA PRÁTICA</span>
+            </h2>
+            <p className="text-white/60 mt-4 max-w-2xl mx-auto text-base leading-relaxed">
+              Transformações reais com acompanhamento e consistência. Clique para ampliar.
+            </p>
           </div>
-          <h2
-            className="font-['Barlow_Condensed'] font-black uppercase leading-none text-white"
-            style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
-          >
-            EVOLUÇÕES
-            <br />
-            <span className="text-gold-gradient">NA PRÁTICA</span>
-          </h2>
-          <p className="text-white/60 mt-4 max-w-2xl mx-auto text-base leading-relaxed">
-            Transformações reais com acompanhamento e consistência. Clique para ampliar.
-          </p>
-        </div>
+        </Reveal>
 
         {/* Gallery */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <Stagger className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
           {images.map((img) => (
-            <button
+            <StaggerItem
               key={img.src}
-              type="button"
-              onClick={() => openImage(img)}
-              className="group relative overflow-hidden rounded-sm border border-white/10 bg-black/20 shadow-[0_18px_55px_rgba(0,0,0,0.45)] focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
-              aria-label={`Abrir ${img.alt}`}
+              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 260, damping: 24 }}
             >
-              <div className="aspect-[3/4] w-full">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                  loading="lazy"
-                  draggable={false}
-                />
-              </div>
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-              </div>
-            </button>
+              <button
+                type="button"
+                onClick={() => openImage(img)}
+                className="group relative w-full overflow-hidden rounded-sm border border-white/10 bg-black/25 backdrop-blur-sm shadow-[0_18px_55px_rgba(0,0,0,0.45)] focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                aria-label={`Abrir ${img.alt}`}
+              >
+                <div className="aspect-[3/4] w-full">
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="h-full w-full object-cover transition-transform duration-500 will-change-transform group-hover:scale-[1.04]"
+                    loading="lazy"
+                    draggable={false}
+                  />
+                </div>
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+                </div>
+              </button>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
 
       <Dialog
