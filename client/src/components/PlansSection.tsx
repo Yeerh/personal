@@ -20,6 +20,7 @@ type Plan = {
   id: string;
   badge: string;
   title: string;
+  subtitle?: string;
   featured: boolean;
   highlight: boolean;
   features: string[];
@@ -31,13 +32,13 @@ type Plan = {
 // Plans data
 const plans: Plan[] = [
   {
-    id: "online-premium",
+    id: "premium-trimestral",
     badge: "PLANO PREMIUM",
-    title: "CONSULTORIA ON-LINE",
+    title: "CONSULTORIA ONLINE",
+    subtitle: "TRIMESTRAL (3 MESES)",
     featured: true,
     highlight: true,
     features: [
-      "Protocolo de treino individualizado",
       "Consulta via videochamada",
       "Avaliação por fotos",
       "Treino via APP com vídeos demonstrativos",
@@ -46,26 +47,44 @@ const plans: Plan[] = [
     pricing: [
       {
         label: "Trimestral (3 meses)",
-        price: "R$ 450,00",
-        installment: "ou 3x de R$ 90,00",
-      },
-      {
-        label: "Semestral (6 meses)",
-        price: "R$ 350,00",
-        installment: "ou 6x de R$ 83,00",
+        price: "R$ 250,00 (PIX)",
+        installment: "ou 3x de R$ 90,00 no cartão",
       },
     ],
     payment: "PIX ou cartão de crédito",
-    cta: "Comece a treinar de verdade",
+    cta: "Fazer Pré-Cadastro",
   },
   {
-    id: "online-platinum",
+    id: "premium-semestral",
+    badge: "PLANO PREMIUM",
+    title: "CONSULTORIA ONLINE",
+    subtitle: "SEMESTRAL (6 MESES)",
+    featured: false,
+    highlight: false,
+    features: [
+      "Consulta via videochamada",
+      "Avaliação por fotos",
+      "Treino via APP com vídeos demonstrativos",
+      "Suporte VIP",
+    ],
+    pricing: [
+      {
+        label: "Semestral (6 meses)",
+        price: "R$ 450,00 (PIX)",
+        installment: "ou 6x de R$ 83,00 no cartão",
+      },
+    ],
+    payment: "PIX ou cartão de crédito",
+    cta: "Fazer Pré-Cadastro",
+  },
+  {
+    id: "platinum-trimestral",
     badge: "PLANO PLATINUM",
-    title: "CONSULTORIA ON-LINE",
+    title: "CONSULTORIA ONLINE",
+    subtitle: "TRIMESTRAL (3 MESES)",
     featured: true,
     highlight: false,
     features: [
-      "Protocolo de treino individualizado",
       "Consulta presencial",
       "Avaliação física",
       "Treino via APP com vídeos demonstrativos",
@@ -74,8 +93,8 @@ const plans: Plan[] = [
     pricing: [
       {
         label: "Trimestral (3 meses)",
-        price: "R$ 500,00",
-        installment: "ou 3x de R$ 125,00",
+        price: "R$ 350,00 (PIX)",
+        installment: "ou 3x de R$ 125,00 no cartão",
       },
     ],
     payment: "PIX ou cartão de crédito",
@@ -84,46 +103,70 @@ const plans: Plan[] = [
   {
     id: "diamante",
     badge: "PLANO DIAMANTE",
-    title: "CONSULTORIA ON-LINE + ASSESSORIA ESPORTIVA",
+    title: "CONSULTORIA + ASSESSORIA",
+    subtitle: "TRIMESTRAL (3 MESES)",
     featured: true,
     highlight: false,
     features: [
-      "Consulta presencial + avaliação física",
+      "Consultoria online + assessoria esportiva",
+      "Consulta presencial",
+      "Avaliação física",
       "Treino via APP com zonas de treinamento",
       "Suporte VIP",
     ],
     pricing: [
       {
         label: "Trimestral (3 meses)",
-        price: "R$ 600,00",
-        installment: "ou 3x de R$ 158,00",
+        price: "R$ 440,00 (PIX)",
+        installment: "ou 3x de R$ 158,00 no cartão",
       },
     ],
     payment: "PIX ou cartão de crédito",
     cta: "Fazer Pré-Cadastro",
   },
   {
-    id: "online-platinum-diet",
+    id: "platinum-dieta-trimestral",
     badge: "PLANO PLATINUM",
-    title: "CONSULTORIA ON-LINE + DIETA",
+    title: "TREINO E DIETA",
+    subtitle: "TRIMESTRAL (3 MESES)",
     featured: false,
     highlight: false,
     features: [
-      "Treino e dieta personalizada",
       "Consulta presencial",
       "Avaliação física",
       "Treino via APP com vídeos demonstrativos",
+      "Dieta personalizada",
       "Suporte VIP",
     ],
     pricing: [
       {
         label: "Trimestral (3 meses)",
-        price: "R$ 750,00",
-        installment: "ou 3x de R$ 179,00",
+        price: "R$ 500,00 (PIX)",
+        installment: "ou 3x de R$ 179,00 no cartão",
       },
+    ],
+    payment: "PIX ou cartão de crédito",
+    cta: "Fazer Pré-Cadastro",
+  },
+  {
+    id: "platinum-dieta-semestral",
+    badge: "PLANO PLATINUM",
+    title: "TREINO E DIETA",
+    subtitle: "SEMESTRAL (6 MESES)",
+    featured: false,
+    highlight: false,
+    features: [
+      "Consulta presencial (inicial e final)",
+      "Avaliação física",
+      "Treino via APP com vídeos demonstrativos",
+      "Dieta personalizada",
+      "Suporte VIP",
+    ],
+    pricing: [
       {
         label: "Semestral (6 meses)",
-        price: "6x de R$ 134,00",
+        price: "R$ 750,00 (PIX)",
+        installment: "ou 6x de R$ 134,00 no cartão",
       },
     ],
     payment: "PIX ou cartão de crédito",
@@ -132,20 +175,19 @@ const plans: Plan[] = [
   {
     id: "assessoria-esportiva",
     badge: "ASSESSORIA ESPORTIVA",
-    title: "TREINO COM ZONAS",
+    title: "ZONAS DE TREINAMENTO",
     featured: false,
     highlight: false,
     features: [
-      "Protocolo de treino individualizado",
       "Teste para estimar zonas de treinamento",
       "Treino via APP com zonas de treinamento",
       "Suporte VIP",
     ],
     pricing: [
       {
-        label: "Trimestral (3 meses)",
-        price: "R$ 440,00",
-        installment: "ou 3x de R$ 65,00",
+        label: "Preço",
+        price: "R$ 180,00",
+        installment: "ou 3x de R$ 65,00 no cartão",
       },
     ],
     payment: "PIX ou cartão de crédito",
@@ -155,17 +197,23 @@ const plans: Plan[] = [
     id: "performance",
     badge: "PLANO PERFORMANCE",
     title: "CONSULTORIA + ASSESSORIA + DIETA",
+    subtitle: "TRIMESTRAL (3 MESES)",
     featured: false,
     highlight: false,
     features: [
-      "Consulta presencial + avaliação física",
-      "Treino via APP com zonas de treinamento",
+      "Consultoria online",
+      "Assessoria esportiva",
       "Dieta personalizada",
+      "Consulta presencial",
+      "Avaliação física",
+      "Treino via APP com zonas de treinamento",
+      "Suporte VIP",
     ],
     pricing: [
       {
         label: "Trimestral (3 meses)",
-        price: "3x de R$ 215,00",
+        price: "R$ 600,00 (PIX)",
+        installment: "ou 3x de R$ 215,00 no cartão",
       },
     ],
     payment: "PIX ou cartão de crédito",
@@ -285,6 +333,11 @@ export default function PlansSection() {
                   <h3 className="mt-4 font-['Barlow_Condensed'] font-black uppercase leading-none text-white text-3xl tracking-wide">
                     <span className="text-gold-gradient">{plan.title}</span>
                   </h3>
+                  {plan.subtitle && (
+                    <p className="mt-2 text-white/55 text-xs uppercase tracking-widest">
+                      {plan.subtitle}
+                    </p>
+                  )}
                 </div>
 
                 {/* Features */}
@@ -371,6 +424,11 @@ export default function PlansSection() {
                     <h3 className="mt-4 font-['Barlow_Condensed'] font-black uppercase leading-none text-white text-3xl tracking-wide">
                       <span className="text-gold-gradient">{plan.title}</span>
                     </h3>
+                    {plan.subtitle && (
+                      <p className="mt-2 text-white/55 text-xs uppercase tracking-widest">
+                        {plan.subtitle}
+                      </p>
+                    )}
                   </div>
 
                   {/* Features */}
