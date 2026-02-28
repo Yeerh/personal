@@ -5,6 +5,7 @@
  */
 
 import { CheckCircle } from "lucide-react";
+import cleytonImg from "@/assets/images/cleyton.jpg";
 
 const highlights = [
   "Treinos 100% personalizados para o seu perfil",
@@ -32,22 +33,12 @@ export default function AboutSection() {
                   "0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgb(var(--brand-1-rgb) / 0.22)",
               }}
             >
-              <div
-                className="w-full h-[400px] md:h-[500px]"
-                style={{
-                  background:
-                    "radial-gradient(900px 700px at 20% 20%, rgb(var(--brand-1-rgb) / 0.25), transparent 60%)," +
-                    "radial-gradient(700px 500px at 80% 70%, rgb(var(--brand-2-rgb) / 0.20), transparent 60%)," +
-                    "linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(22,22,22,0.92) 100%)",
-                }}
-              />
-              <div
-                className="pointer-events-none absolute inset-0 opacity-70"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-                  backgroundSize: "44px 44px",
-                }}
+              <img
+                src={cleytonImg}
+                alt="Cleyton Vieira"
+                className="w-full h-[400px] md:h-[500px] object-cover"
+                loading="lazy"
+                draggable={false}
               />
               <div
                 className="absolute inset-0"
