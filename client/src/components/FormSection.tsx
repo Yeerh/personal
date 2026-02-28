@@ -129,7 +129,6 @@ export default function FormSection() {
       <section
         id="form"
         className="relative py-20 md:py-28"
-        style={{ background: "linear-gradient(135deg, var(--background) 0%, var(--card) 100%)" }}
       >
         <div className="container max-w-2xl mx-auto text-center">
           <div
@@ -201,7 +200,6 @@ export default function FormSection() {
     <section
       id="form"
       className="relative py-20 md:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(135deg, var(--background) 0%, var(--card) 100%)" }}
     >
       {/* Decorative element */}
       <div

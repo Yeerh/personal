@@ -6,9 +6,6 @@
 
 import { CheckCircle } from "lucide-react";
 
-const TRAINING_IMG =
-  "https://private-us-east-1.manuscdn.com/sessionFile/ThL9lJHox9qQEFtvTH8lpv/sandbox/70Qlr83AOiNaIuGL3O6YGm-img-2_1772151113000_na1fn_dHJhaW5pbmctc2VjdGlvbg.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVGhMOWxKSG94OXFRRUZ0dlRIOGxwdi9zYW5kYm94LzcwUWxyODNBT2lOYUl1R0wzTzZZR20taW1nLTJfMTc3MjE1MTExMzAwMF9uYTFmbl9kSEpoYVc1cGJtY3RjMlZqZEdsdmJnLmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=XiUOt6zhHlx3FQlD1XoQEjDb5ldIc6tGRMMAiYmN1Uu9jzgeghimY4fg0bDtx7dbMYJbNkVGBEaa7-ClT~ZuRShoa5KYZ7k8RI~e0h~XprvzLdrFJYCDdu~E9~8s~2ihx0dGpDK0XbvsCTXES~58IvmsQXTU625kwxJCK7vPRAwfMxSybQO27vea2gJG9UwMOxnu7YBJFd4NjtBPnFcUL3~3Z0x7iW0qogwoPglVp6mWyzkEHH8J4rdle6mVAT6NEF64mEJmA7TbMDWR9rAkrzOnaa-~oJ-0rQ60g97XpnV3XV2vYnYtoXoJ~mbYSKchvdzyGM1j5m8UiOpk3gsKRw__";
-
 const highlights = [
   "Treinos 100% personalizados para o seu perfil",
   "Acompanhamento online e presencial",
@@ -22,14 +19,8 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-br from-background to-card"
+      className="relative py-20 md:py-28 overflow-hidden"
     >
-      {/* Diagonal top divider */}
-      <div
-        className="absolute top-0 left-0 right-0 h-16 z-10 bg-gradient-to-br from-background to-card"
-        style={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 100%)" }}
-      />
-
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image side */}
@@ -41,10 +32,22 @@ export default function AboutSection() {
                   "0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgb(var(--brand-1-rgb) / 0.22)",
               }}
             >
-              <img
-                src={TRAINING_IMG}
-                alt="Treino com personal trainer"
-                className="w-full h-[400px] md:h-[500px] object-cover"
+              <div
+                className="w-full h-[400px] md:h-[500px]"
+                style={{
+                  background:
+                    "radial-gradient(900px 700px at 20% 20%, rgb(var(--brand-1-rgb) / 0.25), transparent 60%)," +
+                    "radial-gradient(700px 500px at 80% 70%, rgb(var(--brand-2-rgb) / 0.20), transparent 60%)," +
+                    "linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(22,22,22,0.92) 100%)",
+                }}
+              />
+              <div
+                className="pointer-events-none absolute inset-0 opacity-70"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+                  backgroundSize: "44px 44px",
+                }}
               />
               <div
                 className="absolute inset-0"
@@ -53,6 +56,14 @@ export default function AboutSection() {
                     "linear-gradient(to top, rgba(13,17,23,0.6) 0%, transparent 60%)",
                 }}
               />
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="inline-flex items-center px-3 py-1 rounded-sm text-[0.7rem] font-semibold uppercase tracking-widest bg-primary/10 border border-primary/30 text-primary">
+                  Treino personalizado
+                </div>
+                <div className="mt-3 text-white/80 text-sm leading-relaxed max-w-md">
+                  Acompanhamento e metodologia para evoluÃ§Ã£o constante com seguranÃ§a.
+                </div>
+              </div>
             </div>
             {/* Floating badge */}
             <div

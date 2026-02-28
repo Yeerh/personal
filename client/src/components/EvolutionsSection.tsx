@@ -38,7 +38,7 @@ export default function EvolutionsSection() {
   return (
     <section
       id="evolucoes"
-      className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-br from-background to-card"
+      className="relative py-20 md:py-28 overflow-hidden"
     >
       <div className="container relative z-10">
         {/* Header */}
@@ -111,4 +111,3 @@ export default function EvolutionsSection() {
     </section>
   );
 }
-

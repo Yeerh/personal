@@ -12,7 +12,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative pt-16 pb-8 bg-background border-t border-border/50">
+    <footer className="relative pt-16 pb-8 bg-black/35 backdrop-blur-sm border-t border-border/50">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}

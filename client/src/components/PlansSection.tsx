@@ -7,9 +7,6 @@
 
 import { Check, Star } from "lucide-react";
 
-const ABSTRACT_BG =
-  "https://private-us-east-1.manuscdn.com/sessionFile/ThL9lJHox9qQEFtvTH8lpv/sandbox/70Qlr83AOiNaIuGL3O6YGm-img-3_1772151103000_na1fn_dHJhbnNmb3JtYXRpb24tYmc.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVGhMOWxKSG94OXFRRUZ0dlRIOGxwdi9zYW5kYm94LzcwUWxyODNBT2lOYUl1R0wzTzZZR20taW1nLTNfMTc3MjE1MTEwMzAwMF9uYTFmbl9kSEpoYm5ObWIzSnRZWFJwYjI0dFltYy5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=wESaZnrWurY2x2DnCNa34dslKK1XCPIli8AGYa7P4W4GsA4J4SxbX-q4EozWbKuF4po-I2kY-kORmbOIMWRKMkkVD0vp3SO9xV2CMA4Aa0DyvMy9IHIJ~sAYfRAoSk6jR8UKuWA93Arfzr9q15Xbq4knN008IhISAQois81SugGGsTVfP9PmhTfDYIy5Hs3S94EsA4ABqZ5kQ8QQHAfc6LAzwj2RP45QBY4DYEflpqxu9kfnu56Gorxyo3mJ2rDMRTdBySdt8JmAQtqbR8Wf4tC6tLCjKTaIofdRP-NMMdONWSr8G627LiPpf~3~Nf5E0jItb7m4NDuPAv3UjUbx2A__";
-
 type PricingOption = {
   label: string;
   price: string;
@@ -201,14 +198,11 @@ export default function PlansSection() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `url(${ABSTRACT_BG})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          background:
+            "radial-gradient(900px 700px at 20% 15%, rgb(var(--brand-1-rgb) / 0.18), transparent 55%)," +
+            "radial-gradient(800px 600px at 80% 70%, rgb(var(--brand-2-rgb) / 0.14), transparent 55%)," +
+            "linear-gradient(135deg, rgba(0,0,0,0.88) 0%, rgba(10,10,10,0.90) 100%)",
         }}
-      />
-      <div
-        className="absolute inset-0 z-0"
-        style={{ background: "rgba(0,0,0,0.86)" }}
       />
 
       <div className="container relative z-10">
