@@ -60,6 +60,15 @@
   --brand-1-rgb: 192 138 90;
   --brand-2-rgb: 139 94 52;
 
+  /* Global page background (single gradient) */
+  --page-gradient: linear-gradient(
+    135deg,
+    oklch(0.08 0.003 60) 0%,
+    oklch(0.12 0.004 60) 45%,
+    oklch(0.12 0.02 55) 70%,
+    oklch(0.08 0.003 60) 100%
+  );
+
   --background: oklch(0.12 0.005 60);
   --foreground: oklch(0.96 0 0);
   --card: oklch(0.16 0.005 60);
@@ -104,10 +113,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
-    background-image:
-      radial-gradient(1200px 900px at 15% 10%, rgb(var(--brand-1-rgb) / 0.12), transparent 55%),
-      radial-gradient(900px 700px at 85% 70%, rgb(var(--brand-2-rgb) / 0.10), transparent 55%),
-      linear-gradient(135deg, oklch(0.10 0.003 60) 0%, oklch(0.14 0.004 60) 40%, oklch(0.10 0.003 60) 100%);
+    background-image: var(--page-gradient);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;

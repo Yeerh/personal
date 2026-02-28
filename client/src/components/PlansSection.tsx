@@ -196,15 +196,7 @@ export default function PlansSection() {
       className="relative py-20 md:py-28 overflow-hidden"
     >
       {/* Background */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(900px 700px at 20% 15%, rgb(var(--brand-1-rgb) / 0.18), transparent 55%)," +
-            "radial-gradient(800px 600px at 80% 70%, rgb(var(--brand-2-rgb) / 0.14), transparent 55%)," +
-            "linear-gradient(135deg, rgba(0,0,0,0.88) 0%, rgba(10,10,10,0.90) 100%)",
-        }}
-      />
+      <div className="absolute inset-0 z-0 bg-black/45 backdrop-blur-[2px]" />
 
       <div className="container relative z-10">
         {/* Header */}

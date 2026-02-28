@@ -8,6 +8,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import personagemImg from "@/assets/images/personagem.png";
+import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
 
 function Counter({ end, suffix = "" }: { end: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -56,23 +57,8 @@ export default function HeroSection() {
       id="hero"
       className="relative min-h-screen flex items-center overflow-hidden"
     >
-      {/* Animated gradient background */}
-      <div
-        className="absolute inset-0 z-0 animate-gradient"
-        style={{
-          background: `linear-gradient(-45deg, #080808, #141414, #2a1d14, #080808)`,
-          backgroundSize: "400% 400%",
-        }}
-      />
-
-      {/* Overlay gradient para melhor legibilidade */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.72) 65%, rgba(0,0,0,0.28) 100%)",
-        }}
-      />
+      {/* Global background overlay (keeps the page gradient visible) */}
+      <div className="absolute inset-0 z-0 bg-black/30" />
 
       {/* Animated shapes */}
       <div
@@ -100,41 +86,46 @@ export default function HeroSection() {
       {/* Content */}
       <div className="container relative z-10 pt-24 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-10 items-center">
-          <div className="max-w-2xl">
-          {/* Tag */}
-          <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm mb-6 text-xs font-semibold uppercase tracking-widest bg-primary/10 border border-primary/30 text-primary"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Personal Trainer Profissional
-          </div>
+          <Stagger className="max-w-2xl">
+          <StaggerItem>
+            {/* Tag */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm mb-6 text-xs font-semibold uppercase tracking-widest bg-primary/10 border border-primary/30 text-primary">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              Personal Trainer Profissional
+            </div>
+          </StaggerItem>
 
-          {/* Main headline */}
-          <h1
-            className="font-['Barlow_Condensed'] font-black uppercase leading-none mb-6"
-            style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
-          >
-            <span className="block text-white">TRANSFORME</span>
-            <span className="block text-gold-gradient">SEU CORPO</span>
-            <span className="block text-white">E SUA VIDA</span>
-          </h1>
+          <StaggerItem y={10}>
+            {/* Main headline */}
+            <h1
+              className="font-['Barlow_Condensed'] font-black uppercase leading-none mb-6"
+              style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
+            >
+              <span className="block text-white">TRANSFORME</span>
+              <span className="block text-gold-gradient">SEU CORPO</span>
+              <span className="block text-white">E SUA VIDA</span>
+            </h1>
+          </StaggerItem>
 
-          {/* Character image (mobile/tablet) */}
-          <div className="flex justify-center lg:hidden -mt-2 mb-6">
+          <StaggerItem className="flex justify-center lg:hidden -mt-2 mb-6">
+            {/* Character image (mobile/tablet) */}
             <img
               src={personagemImg}
               alt="Personagem do Cleyton"
-              className="w-[240px] sm:w-[280px] h-auto select-none drop-shadow-[0_25px_60px_rgba(0,0,0,0.55)]"
+              className="w-[240px] sm:w-[280px] h-auto select-none drop-shadow-[0_25px_60px_rgba(0,0,0,0.55)] transition-transform duration-700 will-change-transform"
               draggable={false}
             />
-          </div>
+          </StaggerItem>
 
-          {/* Subtitle */}
-          <p className="text-white/70 text-lg md:text-xl font-light leading-relaxed mb-8 max-w-lg">
-            Treino personalizado com metodologia comprovada. Resultados reais
-            para quem quer mais do que uma academia comum.
-          </p>
+          <StaggerItem>
+            {/* Subtitle */}
+            <p className="text-white/70 text-lg md:text-xl font-light leading-relaxed mb-8 max-w-lg">
+              Treino personalizado com metodologia comprovada. Resultados reais
+              para quem quer mais do que uma academia comum.
+            </p>
+          </StaggerItem>
 
+          <StaggerItem>
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
             <button
@@ -145,12 +136,13 @@ export default function HeroSection() {
             </button>
             <button
               onClick={scrollToPlans}
-              className="px-8 py-4 rounded-sm text-base font-['Barlow_Condensed'] font-700 uppercase tracking-wide text-white border border-white/30 hover:border-primary hover:text-primary transition-all duration-300"
+              className="px-8 py-4 rounded-sm text-base font-['Barlow_Condensed'] font-700 uppercase tracking-wide text-white border border-white/25 bg-black/20 backdrop-blur-sm hover:bg-black/30 hover:border-primary hover:text-primary transition-all duration-300"
             >
               Ver Planos
             </button>
           </div>
 
+          <StaggerItem>
           {/* Stats */}
           <div className="flex flex-wrap gap-8">
             {[
@@ -168,17 +160,24 @@ export default function HeroSection() {
               </div>
             ))}
           </div>
-          </div>
+          </StaggerItem>
+          </StaggerItem>
+          </Stagger>
 
           {/* Character image (desktop) */}
-          <div className="hidden lg:flex justify-end">
+          <Reveal
+            className="hidden lg:flex justify-end"
+            delay={0.12}
+            whileHover={{ y: -8 }}
+            transition={{ type: "spring", stiffness: 240, damping: 22 }}
+          >
             <img
               src={personagemImg}
               alt="Personagem do Cleyton"
-              className="w-[320px] xl:w-[380px] h-auto select-none drop-shadow-[0_25px_60px_rgba(0,0,0,0.55)]"
+              className="w-[320px] xl:w-[380px] h-auto select-none drop-shadow-[0_25px_60px_rgba(0,0,0,0.55)] transition-transform duration-700 will-change-transform hover:scale-[1.02]"
               draggable={false}
             />
-          </div>
+          </Reveal>
         </div>
       </div>
 

@@ -5,6 +5,7 @@
  */
 
 import { Instagram, MessageCircle, Mail } from "lucide-react";
+import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
 
 export default function Footer() {
   const scrollTo = (id: string) => {
@@ -14,9 +15,9 @@ export default function Footer() {
   return (
     <footer className="relative pt-16 pb-8 bg-black/35 backdrop-blur-sm border-t border-border/50">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+        <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}
-          <div>
+          <StaggerItem>
             <div className="flex items-center gap-2 mb-4">
               <span className="font-['Barlow_Condensed'] font-black text-2xl tracking-wide uppercase text-primary">
                 CLEYTON
@@ -29,10 +30,10 @@ export default function Footer() {
               Personal trainer especializado em transformação física e qualidade
               de vida. Metodologia personalizada para resultados reais.
             </p>
-          </div>
+          </StaggerItem>
 
           {/* Navigation */}
-          <div>
+          <StaggerItem>
             <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase tracking-widest text-white/40 mb-4">
               Navegação
             </h4>
@@ -54,10 +55,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </StaggerItem>
 
           {/* Contact */}
-          <div>
+          <StaggerItem>
             <h4 className="font-['Barlow_Condensed'] font-bold text-sm uppercase tracking-widest text-white/40 mb-4">
               Contato
             </h4>
@@ -66,32 +67,42 @@ export default function Footer() {
                 href="https://wa.me/558194077138"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-white/50 hover:text-primary text-sm transition-colors duration-200"
+                className="group flex items-center gap-3 text-white/50 hover:text-primary text-sm transition-colors duration-200"
               >
-                <MessageCircle size={16} />
+                <MessageCircle
+                  size={16}
+                  className="transition-transform duration-300 group-hover:scale-110"
+                />
                 WhatsApp
               </a>
               <a
                 href="https://instagram.com/cleytonvieira"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-white/50 hover:text-primary text-sm transition-colors duration-200"
+                className="group flex items-center gap-3 text-white/50 hover:text-primary text-sm transition-colors duration-200"
               >
-                <Instagram size={16} />
+                <Instagram
+                  size={16}
+                  className="transition-transform duration-300 group-hover:scale-110"
+                />
                 @cleytonvieira
               </a>
               <a
                 href="mailto:personalcleytonvieira@gmail.com"
-                className="flex items-center gap-3 text-white/50 hover:text-primary text-sm transition-colors duration-200"
+                className="group flex items-center gap-3 text-white/50 hover:text-primary text-sm transition-colors duration-200"
               >
-                <Mail size={16} />
+                <Mail
+                  size={16}
+                  className="transition-transform duration-300 group-hover:scale-110"
+                />
                 personalcleytonvieira@gmail.com
               </a>
             </div>
-          </div>
-        </div>
+          </StaggerItem>
+        </Stagger>
 
         {/* Bottom bar */}
+        <Reveal delay={0.06}>
         <div
           className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border/50"
         >
@@ -105,6 +116,7 @@ export default function Footer() {
             Fazer Pré-Cadastro
           </button>
         </div>
+        </Reveal>
       </div>
     </footer>
   );
