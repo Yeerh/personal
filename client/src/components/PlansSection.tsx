@@ -265,7 +265,7 @@ export default function PlansSection() {
             <span className="text-gold-gradient">PLANO IDEAL</span>
           </h2>
           <p className="text-white/60 mt-4 max-w-xl mx-auto text-base leading-relaxed">
-            Consultoria on-line com acompanhamento e valores organizados.
+            Consultoria online com acompanhamento e valores organizados.
             Escolha o plano e comece a treinar de verdade.
           </p>
         </div>
@@ -355,7 +355,7 @@ export default function PlansSection() {
                 {/* Pricing */}
                 <div className="mb-7 rounded-sm p-4 border border-white/10 bg-black/20">
                   <p className="text-white/40 text-[0.7rem] uppercase tracking-widest mb-3">
-                    Preços
+                    Preço
                   </p>
                   <div className="space-y-3">
                     {plan.pricing.map((opt) => (
@@ -446,7 +446,7 @@ export default function PlansSection() {
                   {/* Pricing */}
                   <div className="mb-7 rounded-sm p-4 border border-white/10 bg-black/20">
                     <p className="text-white/40 text-[0.7rem] uppercase tracking-widest mb-3">
-                      Preços
+                      Preço
                     </p>
                     <div className="space-y-3">
                       {plan.pricing.map((opt) => (
